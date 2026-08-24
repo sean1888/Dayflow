@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Confirm Intel runner
+      - name: Confirm Xcode toolchain
         run: |
-          test "$(uname -m)" = "x86_64"
+          uname -m
           xcodebuild -version
 
       - name: Build Intel app

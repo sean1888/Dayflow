@@ -271,7 +271,7 @@ if command -v create-dmg >/dev/null 2>&1; then
 else
   echo "create-dmg not found; using hdiutil fallback (basic installer layout)."
   STAGING_DIR="${SANITIZED_DIR}/dmg-staging"
-  mkdir -p "${STAGING_DIR}/Applications"
+  mkdir -p "${STAGING_DIR}"
   ditto "${SANITIZED_APP}" "${STAGING_DIR}/${APP_NAME}.app"
   ln -s /Applications "${STAGING_DIR}/Applications"
   hdiutil create -volname "${VOL_NAME}" -srcfolder "${STAGING_DIR}" -ov -format UDZO "${DMG_NAME}"
