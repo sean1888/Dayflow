@@ -39,12 +39,12 @@ jobs:
           APP="build/Build/Products/Release/Dayflow.app"
           MAIN="$APP/Contents/MacOS/Dayflow"
           test -d "$APP"
-          lipo -verify_arch x86_64 "$MAIN"
+          lipo "$MAIN" -verify_arch x86_64
 
           while IFS= read -r -d '' binary; do
             if file "$binary" | grep -q 'Mach-O'; then
               echo "Checking $binary"
-              lipo -verify_arch x86_64 "$binary"
+              lipo "$binary" -verify_arch x86_64
             fi
           done < <(find "$APP/Contents" -type f -perm -111 -print0)
 
